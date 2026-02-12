@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://8rcab7l4jbvx"]
+
+[ext_resource type="Script" uid="uid://ulwfcr70va1a" path="res://scripts/offline_player.gd" id="1"]
+[ext_resource type="ArrayMesh" uid="uid://qvack2nhi45m" path="res://assets/weapon_pack/Models/pistol.obj" id="2"]
+[ext_resource type="ArrayMesh" uid="uid://djttwjuaoshyb" path="res://assets/weapon_pack/Models/machinegun.obj" id="3"]
+[ext_resource type="ArrayMesh" uid="uid://cgikyamuumxt7" path="res://assets/weapon_pack/Models/sniper.obj" id="4"]
+[ext_resource type="ArrayMesh" uid="uid://bqtobnbf27wjj" path="res://assets/weapon_pack/Models/rocketlauncher.obj" id="5"]
+[ext_resource type="ArrayMesh" uid="uid://dmcrxjq1y4cyx" path="res://assets/weapon_pack/Models/shotgun.obj" id="6"]
+
+[sub_resource type="CapsuleShape3D" id="1"]
+radius = 0.4
+height = 1.4
+
+[sub_resource type="StandardMaterial3D" id="5"]
+albedo_color = Color(0.95, 0.35, 0.35, 1)
+
+[sub_resource type="StandardMaterial3D" id="6"]
+albedo_color = Color(0.35, 0.7, 0.95, 1)
+
+[sub_resource type="StandardMaterial3D" id="7"]
+albedo_color = Color(0.9, 0.85, 0.25, 1)
+
+[sub_resource type="StandardMaterial3D" id="8"]
+albedo_color = Color(0.7, 0.35, 0.95, 1)
+
+[sub_resource type="StandardMaterial3D" id="9"]
+albedo_color = Color(0.35, 0.95, 0.55, 1)
+
+[sub_resource type="StandardMaterial3D" id="4"]
+albedo_color = Color(0.2, 0.8, 0.6, 1)
+
+[sub_resource type="BoxMesh" id="3"]
+size = Vector3(0.2, 0.2, 0.6)
+
+[node name="OfflinePlayer" type="CharacterBody3D" unique_id=540292452]
+script = ExtResource("1")
+
+[node name="Collision" type="CollisionShape3D" parent="." unique_id=978738888]
+shape = SubResource("1")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1004409070]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3303647, 0.47605777, -0.8266593)
+current = true
+
+[node name="RayCast3D" type="RayCast3D" parent="Camera3D" unique_id=785219925]
+target_position = Vector3(0, 0, -60)
+
+[node name="Guns" type="Node3D" parent="Camera3D" unique_id=857039772]
+
+[node name="Pistol" type="MeshInstance3D" parent="Camera3D/Guns" unique_id=25011215]
+transform = Transform3D(-5, 0, -4.371139e-07, 0, 5, 0, 4.371139e-07, 0, -5, 0.25, -0.25, -0.5)
+material_override = SubResource("5")
+mesh = ExtResource("2")
+
+[node name="Rifle" type="MeshInstance3D" parent="Camera3D/Guns" unique_id=649134018]
+transform = Transform3D(-5, 0, -4.371139e-07, 0, 5, 0, 4.371139e-07, 0, -5, 0.25, -0.25, -0.5)
+material_override = SubResource("6")
+mesh = ExtResource("3")
+
+[node name="Sniper" type="MeshInstance3D" parent="Camera3D/Guns" unique_id=1774641212]
+transform = Transform3D(-5, 0, -4.371139e-07, 0, 5, 0, 4.371139e-07, 0, -5, 0.25, -0.25, -0.5)
+material_override = SubResource("7")
+mesh = ExtResource("4")
+
+[node name="Launcher" type="MeshInstance3D" parent="Camera3D/Guns" unique_id=881757167]
+transform = Transform3D(-4.9997206, 0, 0.052882105, 0, 5, 0, -0.052882105, 0, -4.9997206, 0.25, -0.25, -0.5)
+material_override = SubResource("8")
+mesh = ExtResource("5")
+
+[node name="Shotgun" type="MeshInstance3D" parent="Camera3D/Guns" unique_id=1233803747]
+transform = Transform3D(-5, 0, -4.371139e-07, 0, 5, 0, 4.371139e-07, 0, -5, 0.25, -0.25, -0.5)
+material_override = SubResource("9")
+mesh = ExtResource("6")
+
+[node name="Body" type="MeshInstance3D" parent="." unique_id=1923711407]
+transform = Transform3D(2.2, 0, 0, 0, 2.2, 0, 0, 0, 2.2, 0, 0.4, 0)
+visible = true
+material_override = SubResource("4")
+mesh = SubResource("3")

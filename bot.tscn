@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://dg7sbeq51hie8"]
+
+[ext_resource type="Script" uid="uid://8ah5lv1f2gqo" path="res://scripts/bot.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://be7kyajeth7sd" path="res://assets/characters/Ch15_nonPBR.fbx" id="2"]
+[ext_resource type="ArrayMesh" uid="uid://qvack2nhi45m" path="res://assets/weapon_pack/Models/pistol.obj" id="3"]
+
+[sub_resource type="CapsuleShape3D" id="1"]
+radius = 0.45
+height = 1.6
+
+[sub_resource type="StandardMaterial3D" id="3"]
+albedo_color = Color(0.9, 0.2, 0.2, 1)
+
+[sub_resource type="CapsuleMesh" id="2"]
+radius = 0.45
+
+[node name="Bot" type="CharacterBody3D" unique_id=1157130250]
+script = ExtResource("1")
+
+[node name="EnemyModel" parent="." unique_id=508868704 instance=ExtResource("2")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -0.09919572, -1.0167527, -0.03550458)
+
+[node name="Collision" type="CollisionShape3D" parent="." unique_id=1333794387]
+shape = SubResource("1")
+
+[node name="Body" type="MeshInstance3D" parent="." unique_id=191323332]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+visible = false
+material_override = SubResource("3")
+mesh = SubResource("2")
+
+[node name="Gun" type="MeshInstance3D" parent="." unique_id=1034194290]
+transform = Transform3D(-8, 0, -1.2079664e-06, 0, 8, 0, 1.2079664e-06, 0, -8, 0.23120841, 0.3232131, -0.45446527)
+mesh = ExtResource("3")
+
+[node name="Muzzle" type="Marker3D" parent="Gun" unique_id=1175002833]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.4703484e-08, -0.560826, 0.17949462)

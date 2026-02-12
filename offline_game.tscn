@@ -1,0 +1,180 @@
+[gd_scene format=3 uid="uid://ygh0felnmx4o"]
+
+[ext_resource type="Script" uid="uid://bcs0vedviv2ds" path="res://scripts/offline_game.gd" id="1"]
+[ext_resource type="PackedScene" path="res://offline_player.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://assets/space_kit/Models/GLTF format/corridor_wall.glb" id="3"]
+
+[sub_resource type="PlaneMesh" id="1"]
+size = Vector2(40, 40)
+
+[sub_resource type="BoxShape3D" id="2"]
+size = Vector3(40, 1, 40)
+
+[sub_resource type="BoxShape3D" id="3"]
+size = Vector3(40, 2, 1)
+
+[sub_resource type="BoxShape3D" id="4"]
+size = Vector3(1, 2, 40)
+
+[sub_resource type="BoxMesh" id="5"]
+size = Vector3(6, 2, 2)
+
+[sub_resource type="BoxShape3D" id="6"]
+size = Vector3(6, 2, 2)
+
+[node name="OfflineGame" type="Node3D" unique_id=1051137258]
+script = ExtResource("1")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=92134941]
+transform = Transform3D(0.8253356, 0.4050497, -0.3933902, 0, 0.6967067, 0.7173561, 0.5646425, -0.59205955, 0.57501686, 0, 0, 0)
+
+[node name="Floor" type="StaticBody3D" parent="." unique_id=2083281292]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="Mesh" type="MeshInstance3D" parent="Floor" unique_id=1002882932]
+transform = Transform3D(1, 0, 0, 0, 0.9998062, -0.019686041, 0, 0.019686041, 0.9998062, 4.7683716e-07, -1.2896695, 2.0598211)
+mesh = SubResource("1")
+
+[node name="Collision" type="CollisionShape3D" parent="Floor" unique_id=1596646281]
+shape = SubResource("2")
+
+[node name="WallNorth" type="StaticBody3D" parent="." unique_id=80682811]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
+
+[node name="WallMesh" parent="WallNorth" instance=ExtResource("3")]
+position = Vector3(0, 1, 0)
+rotation_degrees = Vector3(0, 180, 0)
+scale = Vector3(20, 4, 1)
+
+[node name="Collision" type="CollisionShape3D" parent="WallNorth" unique_id=1522021218]
+shape = SubResource("3")
+
+[node name="WallSouth" type="StaticBody3D" parent="." unique_id=1480407196]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
+
+[node name="WallMesh" parent="WallSouth" instance=ExtResource("3")]
+position = Vector3(0, 1, 0)
+scale = Vector3(20, 4, 1)
+
+[node name="Collision" type="CollisionShape3D" parent="WallSouth" unique_id=996262942]
+shape = SubResource("3")
+
+[node name="WallEast" type="StaticBody3D" parent="." unique_id=817478026]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 0)
+
+[node name="WallMesh" parent="WallEast" instance=ExtResource("3")]
+position = Vector3(0, 1, 0)
+rotation_degrees = Vector3(0, 90, 0)
+scale = Vector3(20, 4, 1)
+
+[node name="Collision" type="CollisionShape3D" parent="WallEast" unique_id=2023262574]
+shape = SubResource("4")
+
+[node name="WallWest" type="StaticBody3D" parent="." unique_id=1199300403]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 0)
+
+[node name="WallMesh" parent="WallWest" instance=ExtResource("3")]
+position = Vector3(0, 1, 0)
+rotation_degrees = Vector3(0, -90, 0)
+scale = Vector3(20, 4, 1)
+
+[node name="Collision" type="CollisionShape3D" parent="WallWest" unique_id=35109920]
+shape = SubResource("4")
+
+[node name="CrateA" type="StaticBody3D" parent="." unique_id=437825393]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -6)
+
+[node name="Mesh" type="MeshInstance3D" parent="CrateA" unique_id=207130136]
+mesh = SubResource("5")
+
+[node name="Collision" type="CollisionShape3D" parent="CrateA" unique_id=36681055]
+shape = SubResource("6")
+
+[node name="CrateB" type="StaticBody3D" parent="." unique_id=2057505187]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 6)
+
+[node name="Mesh" type="MeshInstance3D" parent="CrateB" unique_id=1370816127]
+mesh = SubResource("5")
+
+[node name="Collision" type="CollisionShape3D" parent="CrateB" unique_id=1450093704]
+shape = SubResource("6")
+
+[node name="CrateC" type="StaticBody3D" parent="." unique_id=963195783]
+
+[node name="Mesh" type="MeshInstance3D" parent="CrateC" unique_id=1384225356]
+mesh = SubResource("5")
+
+[node name="Collision" type="CollisionShape3D" parent="CrateC" unique_id=340150062]
+shape = SubResource("6")
+
+[node name="Player" parent="." unique_id=140092841 instance=ExtResource("2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5025048, 0.6529522, 10.2108965)
+
+[node name="Bots" type="Node3D" parent="." unique_id=1462337446]
+
+[node name="Spawns" type="Node3D" parent="." unique_id=1444059125]
+
+[node name="S1" type="Marker3D" parent="Spawns" unique_id=2107461733]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, -15)
+
+[node name="S2" type="Marker3D" parent="Spawns" unique_id=1018142172]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, -15)
+
+[node name="S3" type="Marker3D" parent="Spawns" unique_id=2114812516]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 15)
+
+[node name="S4" type="Marker3D" parent="Spawns" unique_id=2142974989]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 15)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=795258000]
+
+[node name="HUD" type="Control" parent="CanvasLayer" unique_id=256867479]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="HP" type="Label" parent="CanvasLayer/HUD" unique_id=2000280824]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 12.0
+offset_right = 220.0
+offset_bottom = 32.0
+text = "HP 100"
+
+[node name="Ammo" type="Label" parent="CanvasLayer/HUD" unique_id=1672258436]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 36.0
+offset_right = 220.0
+offset_bottom = 56.0
+text = "AMMO 30 / 90"
+
+[node name="Score" type="Label" parent="CanvasLayer/HUD" unique_id=500899830]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 60.0
+offset_right = 220.0
+offset_bottom = 80.0
+text = "SCORE 0"
+
+[node name="Wave" type="Label" parent="CanvasLayer/HUD" unique_id=557958049]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 84.0
+offset_right = 220.0
+offset_bottom = 104.0
+text = "WAVE 1"
+
+[node name="Crosshair" type="Label" parent="CanvasLayer/HUD" unique_id=1710410360]
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -10.0
+offset_right = 5.0
+offset_bottom = 10.0
+text = "+"
+horizontal_alignment = 1
